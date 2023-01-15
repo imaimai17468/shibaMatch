@@ -10,7 +10,7 @@ export default function Home() {
   const [data, setData] = useState('No result')
 
   const callShibaHandler = () => {
-    fetch('http://shibe.online/api/shibes?count=1&urls=true&httpsUrls=true')
+    fetch('https://shibe.online/api/shibes?count=1&urls=true&httpsUrls=true')
       .then((res) => res.json())
       .then((data) => {
         setPicUrl(data[0])
