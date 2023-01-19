@@ -24,22 +24,22 @@ const Favorite: React.FC<FavoriteProps> = ({
         <div
           className={
             className +
-            ' flex h-12 w-12 items-center justify-center rounded-full bg-white shadow-md transition hover:cursor-pointer hover:bg-pink-500 active:bg-white'
+            ' flex h-8 w-8 items-center justify-center rounded-full bg-white shadow-md transition hover:cursor-pointer hover:bg-pink-500 active:bg-white md:h-12 md:w-12'
           }
           onClick={toggleFavorite}
         >
-          <Image src={heart} alt="heart" width={20} height={20} />
+          <Image src={heart} alt="heart" width={18} height={18} />
         </div>
       )}
       {isFavorite && (
         <div
           className={
             className +
-            ' flex h-12 w-12 items-center justify-center rounded-full bg-pink-500 shadow-md transition hover:cursor-pointer hover:bg-blue-500 active:bg-white'
+            ' flex h-8 w-8 items-center justify-center rounded-full bg-pink-500 shadow-md transition hover:cursor-pointer hover:bg-blue-500 active:bg-white md:h-12 md:w-12'
           }
           onClick={toggleFavorite}
         >
-          <Image src={white_heart} alt="red heart" width={20} height={20} />
+          <Image src={white_heart} alt="red heart" width={18} height={18} />
         </div>
       )}
     </>
