@@ -1,19 +1,17 @@
 import { useState } from 'react'
 import Head from 'next/head'
 import { Button } from '../components/common'
-import { useQRCode } from 'next-qrcode'
-import { QrReader } from 'react-qr-reader'
 
 export default function Home() {
-  const { Image } = useQRCode()
-  const [picUrl, setPicUrl] = useState<string>('')
-  const [data, setData] = useState('No result')
+  const [picUrl, setPicUrl] = useState<string[]>([])
 
   const callShibaHandler = () => {
-    fetch('https://shibe.online/api/shibes?count=1&urls=true&httpsUrls=true')
+    fetch('https://shibe.online/api/shibes?count=24&urls=true&httpsUrls=true')
       .then((res) => res.json())
       .then((data) => {
-        setPicUrl(data[0])
+        data.forEach((url: string) => {
+          setPicUrl((prev) => [...prev, url])
+        })
       })
   }
 
@@ -27,21 +25,31 @@ export default function Home() {
       <header className="h-16 bg-gray-700 p-4 text-white shadow-md">
         <h1 className="text-3xl">ShibaMatch</h1>
       </header>
-      <main className="flex h-screen flex-col items-center gap-10 bg-gray-100 bg-gradient-to-r from-yellow-400 to-yellow-600 p-4">
+      <main className="flex flex-col min-h-screen items-center gap-10 bg-gray-100 bg-gradient-to-r from-yellow-400 to-yellow-600 p-4">
         <div className="flex w-4/5 flex-col items-center justify-center gap-4 rounded-md bg-white p-4 shadow-md">
-          <h1 className="text-3xl">君のしば犬</h1>
+          {/* タイトルを可愛く修飾する */}
+          <h1 className="text-3xl text-center my-5 font-serif">かわいいしばいぬたち</h1>
+          {picUrl.length === 0 && (
           <Button outlined size="middle" onClick={callShibaHandler}>
             しば犬をよぶ
           </Button>
+          )}
           {picUrl && (
-            <div className="my-4 flex flex-row flex-wrap items-center justify-center gap-4">
-              <img
-                src={picUrl}
-                alt="shiba"
-                className="w-1/2 rounded-full shadow-lg md:w-1/4"
-              />
-              <Image text={picUrl} />
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+              {picUrl.map((url, index) => (
+                <img
+                  key={index}
+                  src={url}
+                  alt="shiba"
+                  className="rounded-full shadow-lg"
+                />
+              ))}
             </div>
+          )}
+          {picUrl.length > 0 && (
+            <Button outlined size="middle" onClick={callShibaHandler}>
+              もっとしば犬をよぶ
+            </Button>
           )}
         </div>
       </main>
