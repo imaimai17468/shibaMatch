@@ -2,7 +2,8 @@ const fs = require('fs')
 const reader = require('readline').createInterface({
   input: process.stdin,
 })
-const fileInputConsole = () => console.log('コンポーネント名を入力して下さい 拡張子は除いて下さい')
+const fileInputConsole = () =>
+  console.log('コンポーネント名を入力して下さい 拡張子は除いて下さい')
 const selectConsole = () =>
   console.log(`
   1. common
@@ -42,7 +43,10 @@ reader.on('line', (line) => {
 })
 const startCreateFile = (atomic) => {
   const path = require('path')
-  const targetPath = path.resolve(__dirname, `../src/components/${atomic}/${componentName}`)
+  const targetPath = path.resolve(
+    __dirname,
+    `../src/components/${atomic}/${componentName}`
+  )
   fs.mkdir(targetPath, async (err) => {
     if (err) return console.log(err)
     await Promise.all([
@@ -68,7 +72,7 @@ const createIndex = (atomic, targetPath) => {
         if (err) return reject(err)
         console.log('index.tsを作成しました')
         resolve()
-      },
+      }
     )
   })
 }
@@ -83,7 +87,7 @@ const createScss = (targetPath) => {
         if (err) return reject(err)
         console.log(`${componentName}.module.scssを作成しました`)
         resolve()
-      },
+      }
     )
   })
 }
@@ -97,7 +101,7 @@ const createTypes = (targetPath) => {
         if (err) return reject(err)
         console.log(`${componentName}.types.tsを作成しました`)
         resolve()
-      },
+      }
     )
   })
 }
@@ -119,7 +123,7 @@ export default ${componentName}
         if (err) reject(err)
         console.log(`${componentName}.tsxを作成しました`)
         resolve()
-      },
+      }
     )
   })
 }
@@ -143,7 +147,7 @@ export const Default: ComponentStoryObj<typeof ${componentName}> = {
       (err) => {
         if (err) return reject(err)
         resolve()
-      },
+      }
     )
   })
 }
