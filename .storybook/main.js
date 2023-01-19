@@ -8,6 +8,7 @@ module.exports = {
     '@storybook/addon-essentials',
     '@storybook/addon-interactions',
     '@storybook/preset-scss',
+    "@storybook/addon-viewport",
     'storybook-addon-next-router',
     {
       name: '@storybook/addon-postcss',
