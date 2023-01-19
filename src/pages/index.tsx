@@ -7,7 +7,7 @@ export default function Home() {
   const [picUrl, setPicUrl] = useState<string[]>([])
 
   const callShibaHandler = () => {
-    fetch('https://shibe.online/api/shibes?count=24&urls=true&httpsUrls=true')
+    fetch('https://shibe.online/api/shibes?count=12&urls=true&httpsUrls=true')
       .then((res) => res.json())
       .then((data) => {
         data.forEach((url: string) => {
@@ -35,7 +35,7 @@ export default function Home() {
             </Button>
           )}
           {picUrl && (
-            <div className="grid grid-cols-2 gap-10 md:grid-cols-3 lg:grid-cols-4">
+            <div className="grid grid-cols-2 place-items-center gap-10 md:grid-cols-3 lg:grid-cols-4">
               {picUrl.map((url, index) => (
                 <Picture key={index} src={url} />
               ))}
@@ -46,7 +46,7 @@ export default function Home() {
               outlined
               size="middle"
               onClick={callShibaHandler}
-              className="mt-10"
+              className="my-10"
             >
               🐶 もっとしばいぬをよぶ 🐶
             </Button>
