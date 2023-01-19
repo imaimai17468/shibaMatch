@@ -5,11 +5,17 @@ import white_heart from '../../../assets/icons/white_heart.svg'
 import Image from 'next/image'
 import { FavoriteProps } from './Favorite.types'
 
-const Favorite: React.FC<FavoriteProps> = ({ className = '' }) => {
-  const [isFavorite, setIsFavorite] = useState<boolean>(false)
+const Favorite: React.FC<FavoriteProps> = ({
+  className = '',
+  onClick,
+  src,
+  iniFavorite = false,
+}) => {
+  const [isFavorite, setIsFavorite] = useState<boolean>(iniFavorite)
 
   const toggleFavorite = () => {
     setIsFavorite(!isFavorite)
+    onClick && onClick(src || '')
   }
 
   return (
@@ -29,7 +35,7 @@ const Favorite: React.FC<FavoriteProps> = ({ className = '' }) => {
         <div
           className={
             className +
-            ' flex h-12 w-12 items-center justify-center rounded-full bg-pink-500 shadow-md transition hover:cursor-pointer active:bg-blue-500'
+            ' flex h-12 w-12 items-center justify-center rounded-full bg-pink-500 shadow-md transition hover:cursor-pointer hover:bg-blue-500 active:bg-white'
           }
           onClick={toggleFavorite}
         >
