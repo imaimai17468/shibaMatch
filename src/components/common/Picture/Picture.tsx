@@ -49,7 +49,7 @@ const Picture: React.FC<PictureProps> = ({
         className="absolute top-0 left-0 flex h-5 w-5 cursor-pointer items-center justify-center rounded-full bg-white shadow-md transition hover:scale-125 md:h-8 md:w-8"
         onClick={() => setIsModal(true)}
       >
-        <Image src={expansion} alt="expansion" width={20} height={20} />
+        <Image src={expansion} alt="expansion" width={15} height={15} />
       </div>
     </div>
   )
